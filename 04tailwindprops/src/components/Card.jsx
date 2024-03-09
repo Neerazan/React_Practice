@@ -1,7 +1,7 @@
 function Card({ username, image }) {
     return (
         <>
-            <div class="relative h-[400px] w-[300px] rounded-md">
+            <div class="relative h-[400px] w-[300px] rounded-md mb-2">
                 <img
                     src={image}
                     alt="AirMax Pro"
