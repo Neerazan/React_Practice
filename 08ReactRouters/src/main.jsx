@@ -35,6 +35,11 @@ import {
 //                 path: "contact",
 //                 element: <Contact />,
 //             },
+//             {
+//                 loader: githubInfoLoader,
+//                 path: "github",
+//                 element: <Github />
+//             }
 //         ],
 //     },
 // ])
