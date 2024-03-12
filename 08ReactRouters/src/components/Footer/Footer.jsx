@@ -84,7 +84,7 @@ export default function Footer() {
                             href="https://hiteshchoudhary.com/"
                             className="hover:underline"
                         >
-                            hiteshchoudhary
+                            Neerazan
                         </a>
                         . All Rights Reserved.
                     </span>
