@@ -7,9 +7,7 @@ function TodoForm() {
 
     const add = (event) => {
         event. preventDefault()
-
         if (!todo) return
-
         addTodo({ todo:todo, completed: false })
         setTodo("")
     }
