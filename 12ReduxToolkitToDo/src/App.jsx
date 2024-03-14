@@ -1,16 +1,16 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react"
+import "./App.css"
+import AddTodo from "./components/Todo"
+import Todos from "./components/TodoList"
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <h1>ReduxToolkit TODO App</h1>
-    </>
-  )
+    return (
+        <>
+            <h1>ReduxToolkit TODO App 🔥❤️‍🔥</h1>
+            <AddTodo />
+            <Todos />
+        </>
+    )
 }
 
 export default App
