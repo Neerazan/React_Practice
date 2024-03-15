@@ -9,7 +9,7 @@ function AddTodo() {
     const addTodoHandler = (event) => {
         event.preventDefault()
         const value = inputRef.current.value.trim()
-        if(value !== ""){
+        if (value !== "") {
             dispatch(addTodo(value))
             inputRef.current.value = ""
         }
@@ -32,6 +32,5 @@ function AddTodo() {
         </form>
     )
 }
-
 
 export default AddTodo
