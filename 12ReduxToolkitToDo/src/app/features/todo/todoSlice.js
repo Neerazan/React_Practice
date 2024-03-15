@@ -13,7 +13,6 @@ export const todoSlice = createSlice({
     initialState,
     reducers: {
         addTodo: (state, action) => {
-            console.log(`text is: ${action.payload}`)
             const todo = {
                 id: nanoid(),
                 text: action.payload,
@@ -23,10 +22,8 @@ export const todoSlice = createSlice({
 
         updateTodo: (state, action) => {
             const { id, text } = action.payload
-
-            console.log(`id: ${id} and message: ${text}`)
-
             const todoToUpdate = state.todos.find((todo) => todo.id === id)
+            
             if (todoToUpdate) {
                 todoToUpdate.text = text
             }

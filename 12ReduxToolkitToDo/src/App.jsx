@@ -9,13 +9,9 @@ function App() {
     const allTasks = useSelector((state) => state.todos)
     const [editValue, setEditValue] = useState()
 
-    console.log(`EditValue: ${editValue}`);
-
     useEffect(() => {
         localStorage.setItem("todos", JSON.stringify(allTasks))
     }, [allTasks])
-
-
 
     return (
         <>

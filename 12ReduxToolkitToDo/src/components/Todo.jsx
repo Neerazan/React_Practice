@@ -16,8 +16,8 @@ function AddTodo({ editValue }) {
 
     const addUpdateTodoHandler = (event) => {
         event.preventDefault()
-        const value = editValue ? editValue.payload : input
-        console.log(`Value is: ${value}`)
+        const value = input
+
         if (value !== "") {
             if (button === "Update") {
                 dispatch(
@@ -27,7 +27,6 @@ function AddTodo({ editValue }) {
                     })
                 )
                 setButton("Add")
-                editValue = ""
                 setInput("")
             } else {
                 dispatch(addTodo(value))
