@@ -7,8 +7,7 @@ import { useSelector } from "react-redux"
 
 function App() {
     const allTasks = useSelector((state) => state.todos)
-    const [editValue, setEditValue] = useState()
-
+    
     useEffect(() => {
         localStorage.setItem("todos", JSON.stringify(allTasks))
     }, [allTasks])
@@ -16,8 +15,8 @@ function App() {
     return (
         <>
             <h1>ReduxToolkit TODO App (🔥)</h1>
-            <AddTodo editValue={editValue}/>
-            <TodoList setEditValue = {setEditValue}/>
+            <AddTodo />
+            <TodoList />
         </>
     )
 }

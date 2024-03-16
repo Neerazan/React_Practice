@@ -32,9 +32,15 @@ export const todoSlice = createSlice({
                 (todo) => todo.id != action.payload
             )
         },
+
+        selectedToUpdate: (state, action) => {
+            console.log("Inside SelecteToUpdate function");
+            state.editValue = action.payload
+            console.log(`EditValue: ${state.editValue}`)
+        },
     },
 })
 
-export const { addTodo, updateTodo, removeTodo } = todoSlice.actions
+export const { addTodo, updateTodo, removeTodo, selectedToUpdate } = todoSlice.actions
 
 export default todoSlice.reducer

@@ -1,12 +1,10 @@
 import React, { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { removeTodo, updateTodo } from "../app/features/todo/todoSlice"
-import { compose } from "@reduxjs/toolkit"
+import { removeTodo, updateTodo, selectedToUpdate } from "../app/features/todo/todoSlice"
 
-function TodoList({ setEditValue }) {
+function TodoList() {
     const todos = useSelector((state) => state.todos)
     const dispatch = useDispatch()
-    const [completed, setCompleted] = useState(false)
 
     return (
         <>
@@ -26,7 +24,7 @@ function TodoList({ setEditValue }) {
                         <div>
                             <button
                                 className="text-white bg-blue-500 border-0 py-1 focus:outline-none hover:bg-blue-600 rounded text-md me-2"
-                                onClick={() => setEditValue(todo)}
+                                onClick={() => dispatch(selectedToUpdate(todo))}
                             >
                                 Edit
                             </button>
