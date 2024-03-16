@@ -1,10 +1,15 @@
 import React, { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { removeTodo, updateTodo, selectedToUpdate } from "../app/features/todo/todoSlice"
+import {
+    removeTodo,
+    todoSelectedToUpdate,
+    toggleCompleted,
+} from "../app/features/todo/todoSlice"
 
 function TodoList() {
     const todos = useSelector((state) => state.todos)
     const dispatch = useDispatch()
+    const [toggleEditButton, setToggleEditButton] = useState(false)
 
     return (
         <>
@@ -12,19 +17,33 @@ function TodoList() {
             <ul className="list-none">
                 {todos.map((todo) => (
                     <li
-                        className="mt-4 flex justify-between items-center bg-zinc-800 px-4 py-2 rounded"
+                        className={`mt-4 flex justify-between px-4 py-2 rounded items-center ${
+                            todo.completed ? "bg-zinc-600" : "bg-zinc-800"
+                        } `}
                         key={todo.id}
                     >
                         <div
-                            key={todo.id}
-                            className={`text-white cursor-pointer`}
+                            className={` cursor-pointer ${
+                                todo.completed
+                                    ? "line-through text-red-500"
+                                    : "text-white"
+                            }`}
+                            onClick={() => dispatch(toggleCompleted(todo))}
                         >
                             {todo.text}
                         </div>
                         <div>
                             <button
-                                className="text-white bg-blue-500 border-0 py-1 focus:outline-none hover:bg-blue-600 rounded text-md me-2"
-                                onClick={() => dispatch(selectedToUpdate(todo))}
+                                className={`rounded text-md me-2 border-0 py-1 focus:outline-none ${
+                                    todo.completed
+                                        ? "text-gray-50 bg-blue-500 filter grayscale"
+                                        : "text-white bg-blue-500  hover:bg-blue-600"
+                                } 
+                                `}
+                                onClick={() =>
+                                    dispatch(todoSelectedToUpdate(todo))
+                                }
+                                disabled={todo.completed ? "disabled" : ""}
                             >
                                 Edit
                             </button>

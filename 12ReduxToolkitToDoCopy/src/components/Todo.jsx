@@ -1,24 +1,44 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { addTodo, updateTodo } from "../app/features/todo/todoSlice"
+import {
+    addTodo,
+    updateTodo,
+    clearTodoSelectedToUpdate,
+} from "../app/features/todo/todoSlice"
 
 function AddTodo() {
     const dispatch = useDispatch()
     const [input, setInput] = useState("")
-    const valueTOUpdate = useSelector((state) => state.editValue)
-    console.log(`This is Value to Update inside Todo Component: ${valueTOUpdate}`)
+    const valueToUpdate = useSelector((state) => state.editValue)
+    const [button, setButton] = useState("Add")
 
     useEffect(() => {
-        
-    }, [valueTOUpdate])
+        if (valueToUpdate) {
+            setInput(valueToUpdate.text)
+            setButton("Update")
+        }
+    }, [valueToUpdate])
 
     const addUpdateTodoHandler = (event) => {
         event.preventDefault()
         const value = input
 
         if (value !== "") {
-            dispatch(addTodo(value))
-            setInput("")
+            if (button === "Update") {
+                dispatch(
+                    updateTodo({
+                        id: valueToUpdate.id,
+                        text: input,
+                        completed: valueToUpdate.completed,
+                    })
+                )
+                setButton("Add")
+                setInput("")
+                clearTodoSelectedToUpdate()
+            } else {
+                dispatch(addTodo(value))
+                setInput("")
+            }
         }
     }
 
@@ -36,7 +56,7 @@ function AddTodo() {
                 type="submit"
                 className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
             >
-                Add
+                {button}
             </button>
         </form>
     )

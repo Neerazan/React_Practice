@@ -14,6 +14,7 @@ export const todoSlice = createSlice({
             const todo = {
                 id: nanoid(),
                 text: action.payload,
+                completed: false,
             }
             state.todos.push(todo)
         },
@@ -33,14 +34,29 @@ export const todoSlice = createSlice({
             )
         },
 
-        selectedToUpdate: (state, action) => {
-            console.log("Inside SelecteToUpdate function");
+        todoSelectedToUpdate: (state, action) => {
+            console.log("Inside todo selected to update")
             state.editValue = action.payload
-            console.log(`EditValue: ${state.editValue}`)
+        },
+
+        clearTodoSelectedToUpdate: (state) => {
+            state.editValue = null
+        },
+
+        toggleCompleted: (state, action) => {
+            console.log(`This is action: ${action.payload.id}`)
+            state.todos.map((todo) => action.payload.id === todo.id ? todo.completed = !action.payload.completed : todo)
         },
     },
 })
 
-export const { addTodo, updateTodo, removeTodo, selectedToUpdate } = todoSlice.actions
+export const {
+    addTodo,
+    updateTodo,
+    removeTodo,
+    todoSelectedToUpdate,
+    clearTodoSelectedToUpdate,
+    toggleCompleted,
+} = todoSlice.actions
 
 export default todoSlice.reducer
