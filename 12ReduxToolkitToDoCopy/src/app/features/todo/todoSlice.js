@@ -35,7 +35,6 @@ export const todoSlice = createSlice({
         },
 
         todoSelectedToUpdate: (state, action) => {
-            console.log("Inside todo selected to update")
             state.editValue = action.payload
         },
 
@@ -44,8 +43,11 @@ export const todoSlice = createSlice({
         },
 
         toggleCompleted: (state, action) => {
-            console.log(`This is action: ${action.payload.id}`)
-            state.todos.map((todo) => action.payload.id === todo.id ? todo.completed = !action.payload.completed : todo)
+            state.todos.map((todo) =>
+                action.payload.id === todo.id
+                    ? (todo.completed = !action.payload.completed)
+                    : todo
+            )
         },
     },
 })

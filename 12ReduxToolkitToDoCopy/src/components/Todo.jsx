@@ -13,7 +13,7 @@ function AddTodo() {
     const [button, setButton] = useState("Add")
 
     useEffect(() => {
-        if (valueToUpdate) {
+        if (valueToUpdate != null) {
             setInput(valueToUpdate.text)
             setButton("Update")
         }

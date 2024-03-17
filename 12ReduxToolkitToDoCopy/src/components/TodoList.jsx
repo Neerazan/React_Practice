@@ -1,6 +1,7 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import {
+    clearTodoSelectedToUpdate,
     removeTodo,
     todoSelectedToUpdate,
     toggleCompleted,
@@ -9,17 +10,19 @@ import {
 function TodoList() {
     const todos = useSelector((state) => state.todos)
     const dispatch = useDispatch()
-    const [toggleEditButton, setToggleEditButton] = useState(false)
-    const [onEdit, setOnEdit] = useState({})
+    const [editingTodoId, setEditingTodoId] = useState(null)
+
+    useEffect(() => {
+        setEditingTodoId(null)
+    }, [todos])
 
     const handleUpdate = (todo) => {
-        setOnEdit({})
-        dispatch(todoSelectedToUpdate(todo))
-        setOnEdit(todo)
-
-        setToggleEditButton(!toggleEditButton)
-        // if (todo.id === onEdit.id) {
-        // }
+        if (editingTodoId === todo.id) {
+            setEditingTodoId(null)
+        } else {
+            setEditingTodoId(todo.id)
+            dispatch(todoSelectedToUpdate(todo))
+        }
     }
 
     return (
@@ -54,9 +57,7 @@ function TodoList() {
                                 onClick={() => handleUpdate(todo)}
                                 disabled={todo.completed ? "disabled" : ""}
                             >
-                                {toggleEditButton && onEdit.id === todo.id
-                                    ? "Cancel"
-                                    : "Edit"}
+                                {editingTodoId === todo.id ? "Cancel" : "Edit"}
                             </button>
 
                             <button
