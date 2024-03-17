@@ -10,6 +10,17 @@ function TodoList() {
     const todos = useSelector((state) => state.todos)
     const dispatch = useDispatch()
     const [toggleEditButton, setToggleEditButton] = useState(false)
+    const [onEdit, setOnEdit] = useState({})
+
+    const handleUpdate = (todo) => {
+        setOnEdit({})
+        dispatch(todoSelectedToUpdate(todo))
+        setOnEdit(todo)
+
+        setToggleEditButton(!toggleEditButton)
+        // if (todo.id === onEdit.id) {
+        // }
+    }
 
     return (
         <>
@@ -40,12 +51,12 @@ function TodoList() {
                                         : "text-white bg-blue-500  hover:bg-blue-600"
                                 } 
                                 `}
-                                onClick={() =>
-                                    dispatch(todoSelectedToUpdate(todo))
-                                }
+                                onClick={() => handleUpdate(todo)}
                                 disabled={todo.completed ? "disabled" : ""}
                             >
-                                Edit
+                                {toggleEditButton && onEdit.id === todo.id
+                                    ? "Cancel"
+                                    : "Edit"}
                             </button>
 
                             <button
