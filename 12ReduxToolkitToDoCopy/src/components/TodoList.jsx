@@ -19,6 +19,7 @@ function TodoList() {
     const handleUpdate = (todo) => {
         if (editingTodoId === todo.id) {
             setEditingTodoId(null)
+            dispatch(clearTodoSelectedToUpdate())
         } else {
             setEditingTodoId(todo.id)
             dispatch(todoSelectedToUpdate(todo))

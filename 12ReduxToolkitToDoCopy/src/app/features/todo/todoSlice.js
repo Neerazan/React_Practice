@@ -39,7 +39,7 @@ export const todoSlice = createSlice({
         },
 
         clearTodoSelectedToUpdate: (state) => {
-            state.editValue = null
+            state.editValue = undefined
         },
 
         toggleCompleted: (state, action) => {
