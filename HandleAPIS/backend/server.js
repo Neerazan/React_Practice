@@ -37,10 +37,8 @@ app.get('/api/products', (req, res) => {
         res.send(filterProducts)
         return;
     }
+    res.send(products)
 
-    setTimeout(() => {
-        res.send(products)
-    }, 3000)
 })
 
 app.listen(port, () => {
