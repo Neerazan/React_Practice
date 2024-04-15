@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import DisplayPosts from './components/DisplayPosts'
+import CreatePost from './components/CreatePost'
+import UpdatePost from './components/UpdatePost'
+
 import './App.css'
 
 function App() {
@@ -7,7 +10,9 @@ function App() {
 
   return (
     <>
-      <DisplayPosts />
+      {/* <DisplayPosts /> */}
+      {/* <CreatePost /> */}
+      <UpdatePost />
     </>
   )
 }
